@@ -30,6 +30,7 @@ public class Game extends Canvas implements Runnable {
 	private BufferedImage level = null;
 	private Camera camera;
 
+	
 	public Game() {
 		window = new Window(WIDTH, HEIGHT, "Testing", this);
 		start();
