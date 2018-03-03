@@ -18,8 +18,8 @@ public class Camera {
 		y += ((o.getY() - y) - height / 2) * 0.05f;
 		if (x <= 0)
 			x = 0;
-		if (x >= width / 2 + 48)
-			x = width / 2 + 48;
+		if (x >= width + 48)
+			x = width + 48;
 		if (y <= 0)
 			y = 0;
 		if (y >= height + 48)
