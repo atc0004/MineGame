@@ -9,6 +9,7 @@ import objects.Block;
 public class Handler {
 	public LinkedList<GameObject> object = new LinkedList<GameObject>();
 	private boolean up = false, down = false, left = false, right = false;
+	private final int imageSize = 32;
 
 	public void tick() {
 		for (int i = 0; i < object.size(); i++) {
@@ -33,8 +34,8 @@ public class Handler {
 	}
 
 	public void createLevel() {
-		for (int xx = 0; xx < Game.WIDTH + 32; xx += 32) {
-			addObject(new Block(xx, Game.HEIGHT - 32, ObjectId.Block, null));
+		for (int xx = 0; xx < Game.WIDTH + imageSize; xx += imageSize) {
+			addObject(new Block(xx, Game.HEIGHT - imageSize, ObjectId.Block, null));
 		}
 	}
 

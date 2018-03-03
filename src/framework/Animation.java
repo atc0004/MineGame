@@ -48,13 +48,12 @@ public class Animation {
 			return getFrame(currentFrame).image;
 		}
 	}
-	
+
 	private AnimFrame getFrame(int i) {
 		return (AnimFrame) frames.get(i);
 	}
 
 	private class AnimFrame {
-
 		BufferedImage image;
 		long endTime;
 

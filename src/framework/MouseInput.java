@@ -9,6 +9,7 @@ public class MouseInput implements MouseListener {
 	private Handler handler;
 	private Camera camera;
 	private SpriteSheet ss;
+	
 
 	public MouseInput(Handler handler, Camera camera, SpriteSheet ss) {
 		this.handler = handler;
@@ -24,7 +25,8 @@ public class MouseInput implements MouseListener {
 		for (int i = 0; i < handler.object.size(); i++) {
 			GameObject tempObject = handler.object.get(i);
 			if (tempObject.getId() == ObjectId.Player) {
-				handler.addObject(new Bullet(tempObject.getX()+16, tempObject.getY()+24, ObjectId.Bullet, handler, mx, my, ss));
+				handler.addObject(new Bullet(tempObject.getX() + 16, tempObject.getY() + 24,
+						ObjectId.Bullet, handler, mx, my, ss));
 			}
 		}
 	}
@@ -36,19 +38,16 @@ public class MouseInput implements MouseListener {
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 }

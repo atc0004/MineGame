@@ -3,8 +3,9 @@ package framework;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
-public class KeyInput implements KeyListener{
+public class KeyInput implements KeyListener {
 	Handler handler;
+
 	public KeyInput(Handler handler) {
 		this.handler = handler;
 	}
@@ -43,7 +44,7 @@ public class KeyInput implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

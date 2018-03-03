@@ -14,6 +14,9 @@ public class Bullet extends GameObject {
 	private Handler handler;
 	private final int SPEED = 8;
 	private BufferedImage nut = null;
+	private final int BULLETWIDTH = 10;
+	private final int BULLETHEIGHT = 12;
+	private final int CENTERBULLET = 16;
 
 	public Bullet(float x, float y, ObjectId id, Handler handler, int mx, int my, SpriteSheet ss) {
 		super(x, y, id, ss);
@@ -41,12 +44,12 @@ public class Bullet extends GameObject {
 	@Override
 	public void render(Graphics g) {
 		nut = ss.grabImage(2, 1, 32, 32);
-		g.drawImage(nut, (int)x-16, (int) y-16, null);
+		g.drawImage(nut, (int) x - CENTERBULLET, (int) y - CENTERBULLET, null);
 	}
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle((int) x, (int) y, 10, 12);
+		return new Rectangle((int) x, (int) y, BULLETWIDTH, BULLETHEIGHT);
 	}
 
 }

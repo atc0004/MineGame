@@ -23,7 +23,7 @@ public class Player extends GameObject {
 	public Player(float x, float y, ObjectId id, Handler handler, SpriteSheet ss) {
 		super(x, y, id, ss);
 		this.handler = handler;
-		squirrel = ss.grabImage(5, 2, 32, 32);
+		squirrel = ss.grabImage(1, 2, 32, 32);
 		squirrelLeft = ss.grabImage(2, 2, 32, 32);
 		squirrelRight = ss.grabImage(3, 2, 32, 32);
 		squirrelTurnLeft = ss.grabImage(4, 2, 32, 32);
@@ -99,7 +99,7 @@ public class Player extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		//currentSprite = currentSprite.getScaledInstance(128, 128, 0);
+		// currentSprite = currentSprite.getScaledInstance(128, 128, 0);
 		g.drawImage(currentSprite, (int) x, (int) y, null);
 	}
 

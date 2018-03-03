@@ -25,6 +25,7 @@ public class Game extends Canvas implements Runnable {
 	private boolean running = false;
 	private Thread thread;
 	public static int WIDTH = 1000, HEIGHT = 563;
+	// public static int WIDTH = 1920, HEIGHT = 1080;
 
 	private Handler handler;
 	private Window window;
@@ -39,7 +40,7 @@ public class Game extends Canvas implements Runnable {
 		start();
 
 		handler = new Handler();
-		camera = new Camera(0, 0, window);
+		camera = new Camera(0, 0);
 		// Listeners for Input
 		this.addKeyListener(new KeyInput(handler));
 
@@ -66,34 +67,6 @@ public class Game extends Canvas implements Runnable {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void run() {
-		this.requestFocus();
-		long lastTime = System.nanoTime();
-		double amountOfTicks = 60.0;
-		double ns = 1000000000 / amountOfTicks;
-		double delta = 0;
-		long timer = System.currentTimeMillis();
-		int frames = 0;
-		while (running) {
-			long now = System.nanoTime();
-			delta += (now - lastTime) / ns;
-			lastTime = now;
-			while (delta >= 1) {
-				tick();
-				delta--;
-			}
-			render();
-			frames++;
-
-			if (System.currentTimeMillis() - timer > 1000) {
-				timer += 1000;
-				frames = 0;
-			}
-		}
-		stop();
 	}
 
 	private void tick() {
@@ -145,6 +118,9 @@ public class Game extends Canvas implements Runnable {
 					handler.addObject(new Block(xx * 32, yy * 32, ObjectId.Block, ss));
 			}
 		}
+
+		// Second for loop to add the player or else it will get drawn over by most of
+		// the walls
 		for (int xx = 0; xx < w; xx++) {
 			for (int yy = 0; yy < h; yy++) {
 				int pixel = image.getRGB(xx, yy);
@@ -162,4 +138,31 @@ public class Game extends Canvas implements Runnable {
 		new Game();
 	}
 
+	@Override
+	public void run() {
+		this.requestFocus();
+		long lastTime = System.nanoTime();
+		double amountOfTicks = 60.0;
+		double ns = 1000000000 / amountOfTicks;
+		double delta = 0;
+		long timer = System.currentTimeMillis();
+		int frames = 0;
+		while (running) {
+			long now = System.nanoTime();
+			delta += (now - lastTime) / ns;
+			lastTime = now;
+			while (delta >= 1) {
+				tick();
+				delta--;
+			}
+			render();
+			frames++;
+
+			if (System.currentTimeMillis() - timer > 1000) {
+				timer += 1000;
+				frames = 0;
+			}
+		}
+		stop();
+	}
 }

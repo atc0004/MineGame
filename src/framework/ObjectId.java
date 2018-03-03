@@ -1,5 +1,5 @@
 package framework;
 
 public enum ObjectId {
-	Player, Block, Bullet, Button;
+	Player, Block, Bullet;
 }
