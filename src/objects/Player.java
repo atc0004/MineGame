@@ -14,7 +14,8 @@ import framework.SpriteSheet;
 
 public class Player extends GameObject {
 	Handler handler;
-	private BufferedImage squirrelLeft = null, squirrelRight = null, squirrel = null;
+	private BufferedImage squirrelLeft = null, squirrelRight = null, squirrel = null, squirrelTurnLeft = null,
+			squirrelTurnRight = null;
 	private Animation sanim;
 	private Image currentSprite = null;
 	private boolean isAnimating = false;
@@ -22,9 +23,11 @@ public class Player extends GameObject {
 	public Player(float x, float y, ObjectId id, Handler handler, SpriteSheet ss) {
 		super(x, y, id, ss);
 		this.handler = handler;
-		squirrel = ss.grabImage(1, 2, 32, 32);
+		squirrel = ss.grabImage(5, 2, 32, 32);
 		squirrelLeft = ss.grabImage(2, 2, 32, 32);
 		squirrelRight = ss.grabImage(3, 2, 32, 32);
+		squirrelTurnLeft = ss.grabImage(4, 2, 32, 32);
+		squirrelTurnRight = ss.grabImage(4, 1, 32, 32);
 		sanim = new Animation();
 		sanim.addFrame(squirrel, 50);
 		sanim.addFrame(squirrelLeft, 150);
@@ -63,15 +66,16 @@ public class Player extends GameObject {
 
 		if (handler.isRight()) {
 			velX = 4;
-			animate();
+			// animate();
+			currentSprite = squirrelTurnRight;
 		} else if (!handler.isLeft()) {
 			velX = 0;
 		}
 
 		if (handler.isLeft()) {
 			velX = -4;
-			animate();
-
+			// animate();
+			currentSprite = squirrelTurnLeft;
 		} else if (!handler.isRight()) {
 			velX = 0;
 		}

@@ -33,13 +33,13 @@ public class Game extends Canvas implements Runnable {
 	private BufferedImage sprite_sheet = null;
 	private SpriteSheet ss;
 	private BufferedImage floor = null;
-	
+
 	public Game() {
 		window = new Window(WIDTH, HEIGHT, "Testing", this);
 		start();
 
 		handler = new Handler();
-		camera = new Camera(0,0, window);
+		camera = new Camera(0, 0, window);
 		// Listeners for Input
 		this.addKeyListener(new KeyInput(handler));
 
@@ -97,8 +97,8 @@ public class Game extends Canvas implements Runnable {
 	}
 
 	private void tick() {
-		for(int i = 0; i < handler.object.size();i++) {
-			if(handler.object.get(i).getId() == ObjectId.Player)
+		for (int i = 0; i < handler.object.size(); i++) {
+			if (handler.object.get(i).getId() == ObjectId.Player)
 				camera.tick(handler.object.get(i));
 		}
 		handler.tick();
@@ -115,13 +115,13 @@ public class Game extends Canvas implements Runnable {
 		Graphics2D g2d = (Graphics2D) g;
 		/// Draw here
 		g2d.translate(-camera.getX(), -camera.getY());
-		
-		for(int xx = 0; xx < 30*72; xx+=32) {
-			for(int yy = 0; yy < 30*72; yy+=32) {
+
+		for (int xx = 0; xx < 30 * 72; xx += 32) {
+			for (int yy = 0; yy < 30 * 72; yy += 32) {
 				g.drawImage(floor, xx, yy, null);
 			}
 		}
-		
+
 		handler.render(g);
 		g2d.translate(camera.getX(), camera.getY());
 
@@ -139,15 +139,23 @@ public class Game extends Canvas implements Runnable {
 			for (int yy = 0; yy < h; yy++) {
 				int pixel = image.getRGB(xx, yy);
 				int red = (pixel >> 16) & 0xff;
-				//int green = (pixel >> 8) & 0xff;
+				// int green = (pixel >> 8) & 0xff;
 				int blue = (pixel) & 0xff;
-
 				if (red == 255)
 					handler.addObject(new Block(xx * 32, yy * 32, ObjectId.Block, ss));
+			}
+		}
+		for (int xx = 0; xx < w; xx++) {
+			for (int yy = 0; yy < h; yy++) {
+				int pixel = image.getRGB(xx, yy);
+				int red = (pixel >> 16) & 0xff;
+				// int green = (pixel >> 8) & 0xff;
+				int blue = (pixel) & 0xff;
 				if (blue == 255)
 					handler.addObject(new Player(xx * 32, yy * 32, ObjectId.Player, handler, ss));
 			}
 		}
+
 	}
 
 	public static void main(String args[]) {

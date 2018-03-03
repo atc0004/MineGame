@@ -11,6 +11,7 @@ import framework.SpriteSheet;
 
 public class Block extends GameObject {
 	private BufferedImage spikes = null;
+
 	public Block(float x, float y, ObjectId id, SpriteSheet ss) {
 		super(x, y, id, ss);
 	}
@@ -23,12 +24,12 @@ public class Block extends GameObject {
 	@Override
 	public void render(Graphics g) {
 		spikes = ss.grabImage(3, 1, 32, 32);
-		g.drawImage(spikes, (int)x, (int) y, null);
+		g.drawImage(spikes, (int) x, (int) y, null);
 	}
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle((int) x, (int) y, 32, 32);
+		return new Rectangle((int) x + 6, (int) y, 24, 32);
 	}
 
 }
