@@ -1,6 +1,6 @@
 package framework;
 
-import minegame.Game;
+import SquirrelsGame.Game;
 
 public class Camera {
 	private int width, height;

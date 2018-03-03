@@ -3,7 +3,7 @@ package framework;
 import java.awt.Graphics;
 import java.util.LinkedList;
 
-import minegame.Game;
+import SquirrelsGame.Game;
 import objects.Block;
 
 public class Handler {

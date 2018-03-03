@@ -1,4 +1,4 @@
-package minegame;
+package SquirrelsGame;
 
 import java.awt.Canvas;
 import java.awt.Color;
