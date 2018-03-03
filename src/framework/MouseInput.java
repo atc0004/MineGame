@@ -8,10 +8,12 @@ import objects.Bullet;
 public class MouseInput implements MouseListener {
 	private Handler handler;
 	private Camera camera;
+	private SpriteSheet ss;
 
-	public MouseInput(Handler handler, Camera camera) {
+	public MouseInput(Handler handler, Camera camera, SpriteSheet ss) {
 		this.handler = handler;
 		this.camera = camera;
+		this.ss = ss;
 	}
 
 	@Override
@@ -22,7 +24,7 @@ public class MouseInput implements MouseListener {
 		for (int i = 0; i < handler.object.size(); i++) {
 			GameObject tempObject = handler.object.get(i);
 			if (tempObject.getId() == ObjectId.Player) {
-				handler.addObject(new Bullet(tempObject.getX()+16, tempObject.getY()+24, ObjectId.Bullet, handler, mx, my));
+				handler.addObject(new Bullet(tempObject.getX()+16, tempObject.getY()+24, ObjectId.Bullet, handler, mx, my, ss));
 			}
 		}
 	}

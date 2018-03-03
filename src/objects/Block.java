@@ -7,11 +7,12 @@ import java.util.LinkedList;
 
 import framework.GameObject;
 import framework.ObjectId;
+import framework.SpriteSheet;
 
 public class Block extends GameObject {
 
-	public Block(float x, float y, ObjectId id) {
-		super(x, y, id);
+	public Block(float x, float y, ObjectId id, SpriteSheet ss) {
+		super(x, y, id, ss);
 	}
 
 	@Override

@@ -13,6 +13,7 @@ import framework.Handler;
 import framework.KeyInput;
 import framework.MouseInput;
 import framework.ObjectId;
+import framework.SpriteSheet;
 import framework.Window;
 import objects.Block;
 import objects.Player;
@@ -29,7 +30,9 @@ public class Game extends Canvas implements Runnable {
 	private Window window;
 	private BufferedImage level = null;
 	private Camera camera;
-
+	private BufferedImage sprite_sheet = null;
+	private SpriteSheet ss;
+	private BufferedImage floor = null;
 	
 	public Game() {
 		window = new Window(WIDTH, HEIGHT, "Testing", this);
@@ -39,11 +42,14 @@ public class Game extends Canvas implements Runnable {
 		camera = new Camera(0,0, window);
 		// Listeners for Input
 		this.addKeyListener(new KeyInput(handler));
-		this.addMouseListener(new MouseInput(handler, camera));
 
 		BufferedImageLoader loader = new BufferedImageLoader();
 		level = loader.loadImage("/GameLevel.png");
+		sprite_sheet = loader.loadImage("/SpriteSheet.png");
+		ss = new SpriteSheet(sprite_sheet);
+		floor = ss.grabImage(1, 1, 32, 32);
 		loadLevel(level);
+		this.addMouseListener(new MouseInput(handler, camera, ss));
 		// Objects
 	}
 
@@ -107,10 +113,14 @@ public class Game extends Canvas implements Runnable {
 
 		Graphics g = bs.getDrawGraphics();
 		Graphics2D g2d = (Graphics2D) g;
-		g.setColor(Color.red);
-		g.fillRect(0, 0, 1000, 750);
 		/// Draw here
 		g2d.translate(-camera.getX(), -camera.getY());
+		
+		for(int xx = 0; xx < 30*72; xx+=32) {
+			for(int yy = 0; yy < 30*72; yy+=32) {
+				g.drawImage(floor, xx, yy, null);
+			}
+		}
 		
 		handler.render(g);
 		g2d.translate(camera.getX(), camera.getY());
@@ -133,9 +143,9 @@ public class Game extends Canvas implements Runnable {
 				int blue = (pixel) & 0xff;
 
 				if (red == 255)
-					handler.addObject(new Block(xx * 32, yy * 32, ObjectId.Block));
+					handler.addObject(new Block(xx * 32, yy * 32, ObjectId.Block, ss));
 				if (blue == 255)
-					handler.addObject(new Player(xx * 32, yy * 32, ObjectId.Player, handler));
+					handler.addObject(new Player(xx * 32, yy * 32, ObjectId.Player, handler, ss));
 			}
 		}
 	}

@@ -8,11 +8,13 @@ public abstract class GameObject {
 	protected float x, y;
 	protected ObjectId id;
 	protected float velX = 0, velY = 0;
+	protected SpriteSheet ss;
 
-	public GameObject(float x, float y, ObjectId id) {
+	public GameObject(float x, float y, ObjectId id, SpriteSheet ss) {
 		this.id = id;
 		this.x = x;
 		this.y = y;
+		this.ss = ss;
 	}
 
 	public abstract void tick(LinkedList<GameObject> object);

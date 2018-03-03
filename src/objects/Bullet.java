@@ -8,13 +8,14 @@ import java.util.LinkedList;
 import framework.GameObject;
 import framework.Handler;
 import framework.ObjectId;
+import framework.SpriteSheet;
 
 public class Bullet extends GameObject {
 	private Handler handler;
 	private final int SPEED = 16;
 
-	public Bullet(float x, float y, ObjectId id, Handler handler, int mx, int my) {
-		super(x, y, id);
+	public Bullet(float x, float y, ObjectId id, Handler handler, int mx, int my, SpriteSheet ss) {
+		super(x, y, id, ss);
 		this.handler = handler;
 
 		int dist = (int) Math.hypot((mx - x), (my - y));
