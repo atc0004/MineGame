@@ -89,7 +89,6 @@ public class Player extends GameObject {
 					x += ((velX) * -1);
 					y += ((velY) * -1);
 				}
-
 			}
 		}
 	}
