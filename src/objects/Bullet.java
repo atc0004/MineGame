@@ -1,8 +1,8 @@
 package objects;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 
 import framework.GameObject;
@@ -12,7 +12,8 @@ import framework.SpriteSheet;
 
 public class Bullet extends GameObject {
 	private Handler handler;
-	private final int SPEED = 16;
+	private final int SPEED = 8;
+	private BufferedImage nut = null;
 
 	public Bullet(float x, float y, ObjectId id, Handler handler, int mx, int my, SpriteSheet ss) {
 		super(x, y, id, ss);
@@ -39,13 +40,13 @@ public class Bullet extends GameObject {
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.green);
-		g.fillOval((int) x, (int) y, 8, 8);
+		nut = ss.grabImage(2, 1, 32, 32);
+		g.drawImage(nut, (int)x-16, (int) y-16, null);
 	}
 
 	@Override
 	public Rectangle getBounds() {
-		return new Rectangle((int) x, (int) y, 4, 4);
+		return new Rectangle((int) x, (int) y, 10, 12);
 	}
 
 }
